@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Razorpay - Modern Payment Solutions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    :root {
+      --primary: #2563eb;
+      --dark: #0f172a;
+      --gray-900: #1e293b;
+      --gray-700: #334155;
+      --gray-600: #475569;
+      --gray-500: #64748b;
+      --gray-200: #e2e8f0;
+      --gray-100: #f1f5f9;
+      --white: #ffffff;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: var(--gray-900);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    button { font-family: inherit; cursor: pointer; border: none; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--gray-200);
+      z-index: 1000;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--dark);
+      letter-spacing: -0.5px;
+    }
+
+    .logo span { color: var(--primary); }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--gray-600);
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--dark); }
+
+    .nav-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--gray-700);
+    }
+
+    .btn-ghost:hover { background: var(--gray-100); }
+
+    .btn-primary {
+      background: var(--primary);
+      color: var(--white);
+    }
+
+    .btn-primary:hover {
+      background: #1d4ed8;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    }
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      background: none;
+      padding: 8px;
+    }
+
+    .menu-toggle span {
+      width: 24px;
+      height: 2px;
+      background: var(--gray-900);
+      transition: 0.3s;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 140px 0 100px;
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #1e40af 100%);
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: 
+        radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 30%, rgba(99, 102, 241, 0.1) 0%, transparent 50%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 6px 16px;
+      border-radius: 100px;
+      font-size: 13px;
+      margin-bottom: 24px;
+    }
+
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      background: #10b981;
+      border-radius: 50%;
+    }
+
+    h1 {
+      font-size: clamp(40px, 5vw, 56px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -1.5px;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 32px;
+      max-width: 480px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 12px;
+    }
+
+    .btn-white {
+      background: var(--white);
+      color: var(--dark);
+    }
+
+    .btn-white:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-outline-white {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--white);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .btn-outline-white:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+
+    /* Payment Card */
+    .payment-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 32px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .card-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--dark);
+    }
+
+    .card-badge {
+      font-size: 11px;
+      font-weight: 600;
+      color: #10b981;
+      background: #ecfdf5;
+      padding: 4px 12px;
+      border-radius: 100px;
+    }
+
+    .payment-methods {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .method {
+      padding: 12px 8px;
+      border: 2px solid var(--gray-200);
+      border-radius: 8px;
+      text-align: center;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--gray-700);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .method:hover {
+      border-color: var(--primary);
+      background: #eff6ff;
+    }
+
+    .method.active {
+      border-color: var(--primary);
+      background: #eff6ff;
+      color: var(--primary);
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--gray-600);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1.5px solid var(--gray-200);
+      border-radius: 8px;
+      font-size: 14px;
+      transition: border-color 0.2s;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .pay-button {
+      width: 100%;
+      padding: 14px;
+      background: var(--primary);
+      color: var(--white);
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      margin-top: 8px;
+      transition: all 0.2s;
+    }
+
+    .pay-button:hover {
+      background: #1d4ed8;
+    }
+
+    .secure-badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 12px;
+      font-size: 12px;
+      color: #10b981;
+      font-weight: 500;
+    }
+
+    /* Logos Section */
+    .logos-section {
+      padding: 60px 0;
+      background: var(--white);
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    .logos-label {
+      text-align: center;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gray-500);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 32px;
+    }
+
+    .logos-grid {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+
+    .logo-item {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--gray-400);
+      opacity: 0.5;
+      transition: opacity 0.2s;
+    }
+
+    .logo-item:hover { opacity: 0.8; }
+
+    /* Features */
+    .features {
+      padding: 120px 0;
+      background: var(--gray-100);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .section-header h2 {
+      font-size: clamp(32px, 4vw, 44px);
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 16px;
+    }
+
+    .section-header p {
+      font-size: 18px;
+      color: var(--gray-600);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .features-tabs {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      padding: 10px 20px;
+      background: var(--white);
+      border: 1.5px solid var(--gray-200);
+      border-radius: 100px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--gray-600);
+      transition: all 0.2s;
+    }
+
+    .tab-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .tab-btn.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: var(--white);
+    }
+
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.4s;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .tab-content.active { display: block; }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .feature-content h3 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .feature-content p {
+      font-size: 16px;
+      color: var(--gray-600);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+
+    .feature-list {
+      list-style: none;
+    }
+
+    .feature-list li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 0;
+      font-size: 15px;
+      color: var(--gray-700);
+    }
+
+    .check-icon {
+      width: 20px;
+      height: 20px;
+      background: #10b981;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .feature-visual {
+      display: flex;
+      justify-content: center;
+    }
+
+    .methods-showcase {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .method-card {
+      background: var(--white);
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid var(--gray-200);
+      text-align: center;
+      transition: all 0.3s;
+    }
+
+    .method-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    }
+
+    .method-icon {
+      width: 48px;
+      height: 32px;
+      border-radius: 6px;
+      margin: 0 auto 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--white);
+    }
+
+    .method-card span {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--gray-700);
+    }
+
+    /* Code Block */
+    .code-block {
+      background: var(--dark);
+      border-radius: 12px;
+      padding: 24px;
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 13px;
+      line-height: 1.8;
+      overflow-x: auto;
+      color: #e2e8f0;
+    }
+
+    .keyword { color: #c084fc; }
+    .string { color: #86efac; }
+    .number { color: #fbbf24; }
+
+    /* Security Badges */
+    .security-badges {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .badge-card {
+      background: var(--white);
+      padding: 20px;
+      border-radius: 12px;
+      border: 2px solid var(--gray-200);
+      text-align: center;
+      font-weight: 700;
+      color: var(--dark);
+      font-size: 14px;
+    }
+
+    /* Products */
+    .products {
+      padding: 120px 0;
+      background: var(--white);
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .product-card {
+      padding: 32px;
+      border: 1px solid var(--gray-200);
+      border-radius: 16px;
+      transition: all 0.3s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+      border-color: transparent;
+    }
+
+    .product-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: var(--gray-100);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .product-card h3 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .product-card p {
+      font-size: 15px;
+      color: var(--gray-600);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .product-link {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--primary);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .product-link:hover { gap: 10px; }
+
+    /* Highlights */
+    .highlights {
+      padding: 120px 0;
+      background: var(--gray-100);
+    }
+
+    .highlights-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 24px;
+    }
+
+    .highlight-card {
+      background: var(--white);
+      padding: 32px;
+      border-radius: 16px;
+      border: 1px solid var(--gray-200);
+      transition: all 0.3s;
+    }
+
+    .highlight-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    .highlight-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: var(--gray-100);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .highlight-card h4 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .highlight-card p {
+      font-size: 14px;
+      color: var(--gray-600);
+      line-height: 1.6;
+    }
+
+    /* Stats */
+    .stats {
+      padding: 100px 0;
+      background: var(--white);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: clamp(36px, 4vw, 48px);
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--primary), #6366f1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-size: 14px;
+      color: var(--gray-600);
+      font-weight: 500;
+    }
+
+    /* CTA */
+    .cta {
+      padding: 120px 0;
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #1e40af 100%);
+      color: var(--white);
+      text-align: center;
+    }
+
+    .cta h2 {
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+
+    .cta p {
+      font-size: 18px;
+      color: rgba(255, 255, 255, 0.8);
+      max-width: 500px;
+      margin: 0 auto 32px;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--dark);
+      color: var(--gray-500);
+      padding: 60px 0 30px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr repeat(4, 1fr);
+      gap: 40px;
+      margin-bottom: 48px;
+    }
+
+    .footer-brand p {
+      font-size: 14px;
+      line-height: 1.7;
+      margin-top: 16px;
+      max-width: 280px;
+    }
+
+    .footer-col h5 {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 16px;
+    }
+
+    .footer-col a {
+      display: block;
+      font-size: 14px;
+      color: var(--gray-500);
+      padding: 4px 0;
+      transition: color 0.2s;
+    }
+
+    .footer-col a:hover { color: var(--white); }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 13px;
+    }
+
+    .footer-legal {
+      display: flex;
+      gap: 24px;
+    }
+
+    /* Responsive */
+    @media (max-width: 968px) {
+      .nav-links { display: none; }
+      .menu-toggle { display: flex; }
+      
+      .hero-content,
+      .feature-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      
+      .payment-card {
+        max-width: 480px;
+        margin: 0 auto;
+      }
+      
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero-buttons,
+      .cta-buttons {
+        flex-direction: column;
+      }
+      
+      .btn { width: 100%; text-align: center; }
+      
+      .payment-methods {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .footer-bottom {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="container">
+      <a href="#" class="logo">Razor<span>pay</span></a>
+      
+      <div class="nav-links">
+        <a href="#products">Products</a>
+        <a href="#features">Features</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#docs">Docs</a>
+      </div>
+      
+      <div class="nav-actions">
+        <button class="btn btn-ghost">Log in</button>
+        <button class="btn btn-primary">Sign Up</button>
+        <button class="menu-toggle" aria-label="Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="container hero-content">
+      <div>
+        <div class="hero-badge">
+          <div class="badge-dot"></div>
+          <span>Free card processing for a year</span>
+        </div>
+        
+        <h1>Accept payments from anywhere, instantly</h1>
+        
+        <p>Join 8 million+ businesses using Razorpay to accept payments, send payouts, and manage finances.</p>
+        
+        <div class="hero-buttons">
+          <button class="btn btn-white">Get Started</button>
+          <button class="btn btn-outline-white">Contact Sales</button>
+        </div>
+      </div>
+      
+      <div class="payment-card">
+        <div class="card-header">
+          <div class="card-title">₹4,999</div>
+          <div class="card-badge">✓ Verified</div>
+        </div>
+        
+        <div class="payment-methods">
+          <div class="method active">Card</div>
+          <div class="method">UPI</div>
+          <div class="method">Wallet</div>
+          <div class="method">Bank</div>
+        </div>
+        
+        <div class="form-group">
+          <label>Card Number</label>
+          <input type="text" placeholder="1234 5678 9012 3456" readonly>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label>Expiry</label>
+            <input type="text" placeholder="MM/YY" readonly>
+          </div>
+          <div class="form-group">
+            <label>CVV</label>
+            <input type="text" placeholder="•••" readonly>
+          </div>
+        </div>
+        
+        <button class="pay-button">Pay ₹4,999</button>
+        
+        <div class="secure-badge">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M7 1L2 3v3.5c0 2.5 1.7 4.8 5 5.5 3.3-.7 5-3 5-5.5V3L7 1z" fill="#10b981"/>
+          </svg>
+          <span>100% Secure Payment</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="logos-section">
+    <div class="container">
+      <div class="logos-label">Trusted by leading companies</div>
+      <div class="logos-grid">
+        <div class="logo-item">Google</div>
+        <div class="logo-item">McDonald's</div>
+        <div class="logo-item">BMW</div>
+        <div class="logo-item">Zoho</div>
+        <div class="logo-item">Pizza Hut</div>
+        <div class="logo-item">Mercedes</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features" id="features">
+    <div class="container">
+      <div class="section-header">
+        <h2>Everything you need to accept payments</h2>
+        <p>Powerful features to help you grow your business and delight your customers</p>
+      </div>
+      
+      <div class="features-tabs">
+        <button class="tab-btn active" data-tab="payments">Payment Methods</button>
+        <button class="tab-btn" data-tab="checkout">Checkout</button>
+        <button class="tab-btn" data-tab="integration">Integration</button>
+        <button class="tab-btn" data-tab="security">Security</button>
+      </div>
+      
+      <div class="tab-content active" id="tab-payments">
+        <div class="feature-grid">
+          <div class="feature-content">
+            <h3>50+ payment methods at your fingertips</h3>
+            <p>Give your customers the freedom to pay their way. Support all major cards, UPI, wallets, and netbanking out of the box.</p>
+            <ul class="feature-list">
+              <li>
+                <div class="check-icon">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                    <path d="M2 6l3 3 5-5" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                Credit & Debit Cards (Visa, Mastercard, Amex)
+              </li>
+              <li>
+                <div class="check-icon">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                    <path d="M2 6l3 3 5-5" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                UPI, Pay Later & EMI options
+              </li>
+              <li>
+                <div class="check-icon">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                    <path d="M2 6l3 3 5-5" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                20+ Wallets & Netbanking
+              </li>
+            </ul>
+          </div>
+          <div class="feature-visual">
+            <div class="methods-showcase">
+              <div class="method-card">
+                <div class="method-icon" style="background: #1a1f71;">VISA</div>
+                <span>Visa</span>
+              </div>
+              <div class="method-card">
+                <div class="method-icon" style="background: #eb001b;">MC</div>
+                <span>Mastercard</span>
+              </div>
+              <div class="method-card">
+                <div class="method-icon" style="background: #10b981;">UPI</div>
+                <span>UPI</span>
+              </div>
+              <div class="method-card">
+                <div class="method-icon" style="background: #0066cf;">AMEX</div>
+                <span>Amex</span>
+              </div>
+              <div class="method-card">
+                <div class="method-icon" style="background: #4285f4;">G</div>
+                <span>Google Pay</span>
+              </div>
+              <div class="method-card">
+                <div class="method-icon" style="background: #5f259f;">P</div>
+                <span>PhonePe</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="tab-content" id="tab-checkout">
+        <div class="feature-grid">
+          <div class="feature-content">
+            <h3>Checkout experience that converts</h3>
+            <p>Reduce cart abandonment with a fast, intuitive checkout flow. Our smart checkout increases conversion rates by up to 25%.</p>
+            <ul class="feature-list">
+              <li>
+                <div class="check-icon">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                    <path d="M2 6l3 3 5-5" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                One-click checkout for returning customers
+              </li>
+              <li>
+                <div class="check-icon">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                    <path d="M2 6l3 3 5-5" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                Auto-fill and smart suggestions
+              </li>
+              <li>
+                <div class="check-icon">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                    <path d="M2 6l3 3 5-5" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                Mobile-optimized responsive design
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div class="tab-content" id="tab-integration">
+        <div class="feature-grid">
+          <div class="feature-content">
+            <h3>Go live in minutes, not weeks</h3>
+            <p>Simple APIs and SDKs for every platform. Integrate and start accepting payments faster than ever.</p>
+            <div class="code-block">
+              <span class="keyword">const</span> razorpay = <span class="keyword">new</span> Razorpay({<br>
+              &nbsp;&nbsp;key_id: <span class="string">'rzp_live_xxx'</span>,<br>
+              &nbsp;&nbsp;amount: <span class="number">499900</span>,<br>
+              &nbsp;&nbsp;currency: <span class="string">'INR'</span><br>
+              });<br>
+              razorpay.open();
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="tab-content" id="tab-security">
+        <div class="feature-grid">
+          <div class="feature-content">
+            <h3>Enterprise-grade security</h3>
+            <p>PCI DSS Level 1 compliant, GDPR ready, and ISO 27001 certified. Your transactions are protected by world-class security.</p>
+            <div class="security-badges">
+              <div class="badge-card">PCI DSS</div>
+              <div class="badge-card">ISO 27001</div>
+              <div class="badge-card">GDPR</div>
+              <div class="badge-card">RBI Certified</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="products" id="products">
+    <div class="container">
+      <div class="section-header">
+        <h2>Complete payment solutions</h2>
+        <p>Everything you need to accept payments and manage your business</p>
+      </div>
+      
+      <div class="products-grid">
+        <div class="product-card">
+          <div class="product-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <rect x="3" y="6" width="18" height="12" rx="2" stroke="#2563eb" stroke-width="2"/>
+              <path d="M3 10h18" stroke="#2563eb" stroke-width="2"/>
+            </svg>
+          </div>
+          <h3>Payment Gateway</h3>
+          <p>Accept payments on your website or app with our powerful, developer-friendly gateway.</p>
+          <a href="#" class="product-link">Learn more →</a>
+        </div>
+        
+        <div class="product-card">
+          <div class="product-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" stroke="#2563eb" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="12" cy="12" r="9" stroke="#2563eb" stroke-width="2"/>
+            </svg>
+          </div>
+          <h3>Payment Links</h3>
+          <p>Create and share payment links via email, SMS, or social media to collect payments instantly.</p>
+          <a href="#" class="product-link">Learn more →</a>
+        </div>
+        
+        <div class="product-card">
+          <div class="product-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <rect x="4" y="4" width="16" height="16" rx="2" stroke="#2563eb" stroke-width="2"/>
+              <path d="M4 10h16" stroke="#2563eb" stroke-width="2"/>
+            </svg>
+          </div>
+          <h3>Payment Pages</h3>
+          <p>Create beautiful, hosted payment pages without writing any code. Perfect for quick setup.</p>
+          <a href="#" class="product-link">Learn more →</a>
+        </div>
+        
+        <div class="product-card">
+          <div class="product-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M12 8v4l3 3" stroke="#2563eb" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="12" cy="12" r="9" stroke="#2563eb" stroke-width="2"/>
+            </svg>
+          </div>
+          <h3>Subscriptions</h3>
+          <p>Set up recurring payments with flexible billing plans. Automate your subscription business.</p>
+          <a href="#" class="product-link">Learn more →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="highlights">
+    <div class="container">
+      <div class="section-header">
+        <h2>Built for developers, loved by businesses</h2>
+      </div>
+      
+      <div class="highlights-grid">
+        <div class="highlight-card">
+          <div class="highlight-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M13 10V3L4 14h7v7l9-11h-7z" stroke="#2563eb" stroke-width="2" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h4>Lightning Fast</h4>
+          <p>Get activated within hours. Start accepting payments the same day with instant onboarding.</p>
+        </div>
+        
+        <div class="highlight-card">
+          <div class="highlight-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="#2563eb" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h4>99.9% Uptime</h4>
+          <p>Enterprise-grade infrastructure with guaranteed uptime. Your payments never go down.</p>
+        </div>
+        
+        <div class="highlight-card">
+          <div class="highlight-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" stroke="#2563eb" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h4>Best Pricing</h4>
+          <p>Competitive rates with no hidden fees. Pay only for what you use with transparent pricing.</p>
+        </div>
+        
+        <div class="highlight-card">
+          <div class="highlight-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" stroke="#2563eb" stroke-width="2"/>
+            </svg>
+          </div>
+          <h4>24/7 Support</h4>
+          <p>Dedicated support team available around the clock. Get help when you need it, not when we're open.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div>
+          <div class="stat-number">8M+</div>
+          <div class="stat-label">Businesses powered</div>
+        </div>
+        <div>
+          <div class="stat-number">50+</div>
+          <div class="stat-label">Payment methods</div>
+        </div>
+        <div>
+          <div class="stat-number">99.9%</div>
+          <div class="stat-label">Uptime guarantee</div>
+        </div>
+        <div>
+          <div class="stat-number">₹8L Cr+</div>
+          <div class="stat-label">Volume processed</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="container">
+      <h2>Ready to get started?</h2>
+      <p>Create an account instantly and start accepting payments today. No setup fees, no hidden costs.</p>
+      <div class="cta-buttons">
+        <button class="btn btn-white">Sign Up Free</button>
+        <button class="btn btn-outline-white">Contact Sales</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo">Razor<span style="color: var(--primary);">pay</span></div>
+          <p>India's leading financial infrastructure platform for businesses of all sizes.</p>
+        </div>
+        
+        <div class="footer-col">
+          <h5>Products</h5>
+          <a href="#">Payment Gateway</a>
+          <a href="#">Payment Links</a>
+          <a href="#">Payment Pages</a>
+          <a href="#">Subscriptions</a>
+        </div>
+        
+        <div class="footer-col">
+          <h5>Solutions</h5>
+          <a href="#">E-commerce</a>
+          <a href="#">SaaS</a>
+          <a href="#">Education</a>
+          <a href="#">Marketplace</a>
+        </div>
+        
+        <div class="footer-col">
+          <h5>Resources</h5>
+          <a href="#">Blog</a>
+          <a href="#">Documentation</a>
+          <a href="#">API Reference</a>
+          <a href="#">Support</a>
+        </div>
+        
+        <div class="footer-col">
+          <h5>Company</h5>
+          <a href="#">About</a>
+          <a href="#">Careers</a>
+          <a href="#">Contact</a>
+          <a href="#">Press</a>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <div>© 2024 Razorpay. All rights reserved.</div>
+        <div class="footer-legal">
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+          <a href="#">Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Tab switching
+    const tabs = document.querySelectorAll('.tab-btn');
+    const contents = document.querySelectorAll('.tab-content');
+    
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const target = tab.dataset.tab;
+        
+        tabs.forEach(t => t.classList.remove('active'));
+        contents.forEach(c => c.classList.remove('active'));
+        
+        tab.classList.add('active');
+        document.getElementById(`tab-${target}`).classList.add('active');
+      });
+    });
+    
+    // Payment method selection
+    const methods = document.querySelectorAll('.method');
+    methods.forEach(method => {
+      method.addEventListener('click', () => {
+        methods.forEach(m => m.classList.remove('active'));
+        method.classList.add('active');
+      });
+    });
+    
+    // Mobile menu
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    
+    menuToggle?.addEventListener('click', () => {
+      navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+    });
+  </script>
+</body>
+</html>
